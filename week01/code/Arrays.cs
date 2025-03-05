@@ -41,9 +41,11 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
         
+        // here is the loop that repeats the insertion for the int amount
         for (var i = 0; i < amount; i++) {
-            var count = data.Count -1;
-            data.Insert(0, data[count]);
+            // here, fristly the last index is inserted at the beginning
+            data.Insert(0, data[data.Count - 1]);
+            // and here the last index is removed
             data.RemoveAt(data.Count -1);
         }
 
