@@ -13,7 +13,16 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        // variable for the result
+        var results = new double[length];
+
+        // so here I need to make this work as many times as the int length
+        for (int i = 0; i < length; i++) {
+            results[i] = number * 2;
+            Console.WriteLine(results[i]);
+        }
+        
+        return results; // replace this return statement with your own
     }
 
     /// <summary>
