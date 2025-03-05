@@ -18,10 +18,12 @@ public static class Arrays
 
         // so here I need to make this work as many times as the int length
         for (int i = 0; i < length; i++) {
-            results[i] = number * 2;
+            // here I multiplied the double number for the length adding one so the first result 
+            // don't give 0, making the starting index 1
+            results[i] = number * (i + 1);
             Console.WriteLine(results[i]);
         }
-        
+        Console.WriteLine(results);
         return results; // replace this return statement with your own
     }
 
@@ -38,5 +40,13 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        
+        for (var i = 0; i < amount; i++) {
+            var count = data.Count -1;
+            data.Insert(0, data[count]);
+            data.RemoveAt(data.Count -1);
+        }
+
+
     }
 }
