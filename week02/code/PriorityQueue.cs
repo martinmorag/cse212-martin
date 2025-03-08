@@ -1,6 +1,8 @@
 ﻿public class PriorityQueue
 {
-    private List<PriorityItem> _queue = new();
+    private readonly PriorityItemQueue _queue = new();
+
+    public int Length => _queue.Length;
 
     /// <summary>
     /// Add a new value to the queue with an associated priority.  The
@@ -9,51 +11,34 @@
     /// </summary>
     /// <param name="value">The value</param>
     /// <param name="priority">The priority</param>
-    public void Enqueue(string value, int priority)
+    public void AddItem(string value, int priority)
     {
-        var newNode = new PriorityItem(value, priority);
-        _queue.Add(newNode);
+        var item = new PriorityItem(value, priority);
+        _queue.Enqueue(item);
     }
 
-    public string Dequeue()
+    public string Next()
     {
-        if (_queue.Count == 0) // Verify the queue is not empty
+        if (_queue.IsEmpty()) // Verify the queue is not empty
         {
             throw new InvalidOperationException("The queue is empty.");
-        }
+        } else { 
+            //PriorityItem item = _queue.Dequeue();
+            var highest = _queue.HighestIndex();
+            PriorityItem item = _queue.GetItem(highest);
 
-        // Find the index of the item with the highest priority to remove
-        var highPriorityIndex = 0;
-        for (int index = 1; index < _queue.Count - 1; index++)
-        {
-            if (_queue[index].Priority >= _queue[highPriorityIndex].Priority)
-                highPriorityIndex = index;
-        }
+            _queue.Dequeue(item);
 
-        // Remove and return the item with the highest priority
-        var value = _queue[highPriorityIndex].Value;
-        return value;
+            return item.Value;
+        }
+    }
+    public string currentItem() {
+        //_queue.Dequeue();
+        return _queue.ToString();
     }
 
     public override string ToString()
     {
         return $"[{string.Join(", ", _queue)}]";
-    }
-}
-
-internal class PriorityItem
-{
-    internal string Value { get; set; }
-    internal int Priority { get; set; }
-
-    internal PriorityItem(string value, int priority)
-    {
-        Value = value;
-        Priority = priority;
-    }
-
-    public override string ToString()
-    {
-        return $"{Value} (Pri:{Priority})";
     }
 }
