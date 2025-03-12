@@ -12,4 +12,5 @@ public class PriorityItem
     public override string ToString()
     {
         return $"{Value} (Pri:{Priority})";
+    }
 }
