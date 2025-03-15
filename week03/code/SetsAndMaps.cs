@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 
 public static class SetsAndMaps
@@ -21,8 +23,23 @@ public static class SetsAndMaps
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
     public static string[] FindPairs(string[] words)
     {
-        // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        var theSet = new HashSet<string>();
+        var unique = new HashSet<string>();
+        string[] uniquee = new string[0];
+        
+        foreach (var x in words)
+        {
+            var reverse = string.Join("", x.ToCharArray().Reverse());
+            if (theSet.Contains(reverse)) {
+                if (x != reverse) {
+                    unique.Add($"{x} & {reverse}");    
+                }
+                
+            } else {
+                theSet.Add(x);
+            }
+        }
+        return unique.ToArray();
     }
 
     /// <summary>
@@ -42,7 +59,12 @@ public static class SetsAndMaps
         foreach (var line in File.ReadLines(filename))
         {
             var fields = line.Split(",");
-            // TODO Problem 2 - ADD YOUR CODE HERE
+            var x = fields[3];
+            if (degrees.ContainsKey(x)) {
+                degrees[x] += 1;
+            } else {
+                degrees.Add(x, 1);
+            }
         }
 
         return degrees;
@@ -66,8 +88,35 @@ public static class SetsAndMaps
     /// </summary>
     public static bool IsAnagram(string word1, string word2)
     {
-        // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        
+        word1 = word1.Replace(" ", "");
+        word2 = word2.Replace(" ", "");
+        bool result = false;
+        if (word1.Length == word2.Length) {
+            word1 = word1.ToLower();
+            word2 = word2.ToLower();
+            Dictionary<int, char> _dict = new();
+            Dictionary<int, char> _dict2 = new();
+            HashSet<int> check = new();
+            for (var i = 0; i < word1.Length; i++) {
+                _dict[i] = word1[i];
+                _dict2[i] = word2[i];
+            }
+            int match = 0;
+            
+            var value = 0;
+            foreach (var x in _dict) {
+                if (_dict2.ContainsValue(x.Value) ) {
+                    match++;
+                    value = _dict2.FirstOrDefault(d => d.Value == x.Value).Key;
+                    _dict2.Remove(value);
+                } 
+            }
+            if (match == word1.Length) {
+                result = true;
+            }
+        }
+        return result;
     }
 
     /// <summary>
