@@ -12,6 +12,8 @@ public class TakingTurnsQueueTests
     // run until the queue is empty
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
     // Defect(s) Found: 
+    // The PersonQueue class had an error on the Dequeque method, 
+    // it was not removing the first element of the queue but the second 
     public void TestTakingTurnsQueue_FiniteRepetition()
     {
         var bob = new Person("Bob", 2);
@@ -44,6 +46,8 @@ public class TakingTurnsQueueTests
     // After running 5 times, add George with 3 turns.  Run until the queue is empty.
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, George, Sue, Tim, George, Tim, George
     // Defect(s) Found: 
+    // The PersonQueue class had an error on the Dequeque method, 
+    // it was not removing the first element of the queue but the second 
     public void TestTakingTurnsQueue_AddPlayerMidway()
     {
         var bob = new Person("Bob", 2);
@@ -86,6 +90,12 @@ public class TakingTurnsQueueTests
     // Run 10 times.
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
     // Defect(s) Found: 
+    // The PersonQueue class had an error on the Dequeque method, 
+    // it was not removing the first element of the queue but the second 
+    // --------
+    // There was a problem with the option for Person with turn equal or less than 0,
+    // there was not a condition for this situation so I had to add a condition for this
+    // on the GetNextPerson method
     public void TestTakingTurnsQueue_ForeverZero()
     {
         var timTurns = 0;
@@ -117,6 +127,12 @@ public class TakingTurnsQueueTests
     // Run 10 times.
     // Expected Result: Tim, Sue, Tim, Sue, Tim, Sue, Tim, Tim, Tim, Tim
     // Defect(s) Found: 
+    // The PersonQueue class had an error on the Dequeque method, 
+    // it was not removing the first element of the queue but the second 
+    // -------
+    // There was a problem with the option for Person with turn equal or less than 0,
+    // there was not a condition for this situation so I had to add a condition for this
+    // on the GetNextPerson method
     public void TestTakingTurnsQueue_ForeverNegative()
     {
         var timTurns = -3;

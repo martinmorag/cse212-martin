@@ -48,12 +48,7 @@ public class PriorityItemQueue
         }
         
         if (highests.Count > 1) {
-            highPriorityIndex = highests[0]; 
-            Console.WriteLine("this was used");
-            for (var j = 0; j < highests.Count; j++) {
-                Console.WriteLine("high" + highests[j]);
-            }
-            
+            highPriorityIndex = highests[0];             
         }
 
         // Remove and return the item with the highest priority

@@ -11,13 +11,13 @@
     /// </summary>
     /// <param name="value">The value</param>
     /// <param name="priority">The priority</param>
-    public void AddItem(string value, int priority)
+    public void Enqueue(string value, int priority)
     {
         var item = new PriorityItem(value, priority);
         _queue.Enqueue(item);
     }
 
-    public string Next()
+    public string Dequeue()
     {
         if (_queue.IsEmpty()) // Verify the queue is not empty
         {
